@@ -13,8 +13,6 @@
 	<simpleType name="成绩性质类型">
 		<restriction base="string">
 			<enumeration value="平时成绩"/>
-			<enumeration value="作业成绩"/>
-			<enumeration value="期中成绩"/>
 			<enumeration value="期末成绩"/>
 			<enumeration value="总评成绩"/>
 		</restriction>

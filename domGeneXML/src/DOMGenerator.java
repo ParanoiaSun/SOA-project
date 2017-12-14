@@ -42,7 +42,8 @@ public class DOMGenerator {
             Element studentList = document.createElement("学生列表");
             studentList.setAttribute("xmlns", "http://jw.nju.edu.cn/schema");
             studentList.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
-            studentList.setAttribute("xsi:schemaLocation", "http://jw.nju.edu.cn/schema");
+            studentList.setAttribute("xmlns:person", "http://www.nju.edu.cn/schema");
+            studentList.setAttribute("xsi:schemaLocation", "http://jw.nju.edu.cn/schema http://jw.nju.edu.cn/schema/StudentList.xsd");
 
             Iterator<StudentPO> it = students.iterator();
 
@@ -54,42 +55,42 @@ public class DOMGenerator {
                 // 创建子节点，并设置属性
                 Element person = document.createElement("基本信息");
                 // 为person添加子节点
-                Element name = document.createElement("姓名");
+                Element name = document.createElement("person:姓名");
                 name.setTextContent(stu.getName());
                 person.appendChild(name);
-                Element sex = document.createElement("性别");
+                Element sex = document.createElement("person:性别");
                 sex.setTextContent(stu.getSex());
                 person.appendChild(sex);
-                Element birth = document.createElement("出生日期");
+                Element birth = document.createElement("person:出生日期");
                 birth.setTextContent(stu.getBirth());
                 person.appendChild(birth);
-                Element country = document.createElement("国籍");
+                Element country = document.createElement("person:国籍");
                 country.setTextContent(stu.getCountry());
                 person.appendChild(country);
-                Element nation = document.createElement("民族");
+                Element nation = document.createElement("person:民族");
                 nation.setTextContent(stu.getNation());
                 person.appendChild(nation);
-                Element place = document.createElement("籍贯");
+                Element place = document.createElement("person:籍贯");
                 place.setTextContent(stu.getNativePlace());
                 person.appendChild(place);
-                Element identity = document.createElement("身份证号");
+                Element identity = document.createElement("person:身份证号");
                 identity.setTextContent(stu.getId());
                 person.appendChild(identity);
-                Element phone = document.createElement("手机");
+                Element phone = document.createElement("person:手机");
                 phone.setTextContent(stu.getPhone());
                 person.appendChild(phone);
-                Element mail = document.createElement("电子邮箱");
+                Element mail = document.createElement("person:电子邮箱");
                 mail.setTextContent(stu.getEmail());
                 person.appendChild(mail);
                 //person中的子节点院系部门
-                Element department = document.createElement("院系部门");
-                Element departmentID = document.createElement("院系部门编号");
+                Element department = document.createElement("person:院系部门");
+                Element departmentID = document.createElement("person:院系部门编号");
                 departmentID.setTextContent(stu.getDepartmentPO().getNumber());
                 department.appendChild(departmentID);
-                Element departmentName = document.createElement("院系部门名称");
+                Element departmentName = document.createElement("person:院系部门名称");
                 departmentName.setTextContent(stu.getDepartmentPO().getName());
                 department.appendChild(departmentName);
-                Element depClassification = document.createElement("院系种类编号");
+                Element depClassification = document.createElement("person:院系种类编号");
                 depClassification.setTextContent(stu.getDepartmentPO().getType());
                 department.appendChild(depClassification);
                 person.appendChild(department);
