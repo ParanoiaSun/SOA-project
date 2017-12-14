@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://jw.nju.edu.cn/schema" xmlns:tns="http://jw.nju.edu.cn/schema"  elementFormDefault="qualified">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://jw.nju.edu.cn/schema" xmlns:tns="http://jw.nju.edu.cn/schema"  xmlns:person="http://www.nju.edu.cn/schema" elementFormDefault="qualified">
 	<import namespace="http://www.nju.edu.cn/schema"
 		schemaLocation="./PersonInfo.xsd"/>
 	<include schemaLocation="./Course.xsd"/>
     <include schemaLocation="./ScoreList.xsd"/>
-    
-    <element name="基本信息" type="tns:基本信息类型"/>
-    <element name="学号" type="tns:学号类型"/>
-    <element name="入学年份" type="tns:入学年份类型"/>
-    <element name="课程信息列表" type="tns:课程信息列表类型"/>
-    <element name="课程成绩列表" type="tns:课程成绩列表类型"/>
+	
+	<element name="学生信息" type="tns:学生信息类型"/>
+	
+	<complexType name="学生信息类型">
+		<sequence>
+			<element name="基本信息" type="person:基本信息类型"/>
+			<element name="学号" type="tns:学号类型"/>
+			<element name="入学年份" type="tns:入学年份类型"/>
+			<element name="课程信息列表" type="tns:课程信息列表类型"/>
+			<element name="课程成绩列表" type="tns:课程成绩列表类型"/>
+		</sequence>
+	</complexType>
 
      <simpleType name="学号类型">
         <restriction base="string">

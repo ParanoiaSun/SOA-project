@@ -15,7 +15,7 @@
             <element name="身份证号" type="tns:身份证类型"/>
             <element name="手机" type="tns:手机号类型"/>
             <element name="电子邮箱" type="string"/>
-            <element name="院系部门" type="tns:院系部门名称类型"/>
+            <element name="院系部门" type="tns:院系部门类型"/>
         </sequence>
     </complexType>
 
@@ -51,13 +51,5 @@
             <length value="11"/>
         </restriction>
     </simpleType>
-
-    <complexType name="院系部门类型">
-  		<sequence>
-            <element name="院系部门编号" type="tns:院系部门编号类型"/>
-    		<element name="院系部门名称" type="tns:院系部门名称类型"/>
-            <element name="院系部门种类" type="tns:院系部门种类类型"/>
-  		</sequence>
-	</complexType>
 
 </schema>
