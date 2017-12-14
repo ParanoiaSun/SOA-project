@@ -3,10 +3,10 @@
 	targetNamespace="http://jw.nju.edu.cn/schema"
 	xmlns:tns="http://jw.nju.edu.cn/schema" elementFormDefault="qualified">
 	<import namespace="http://www.nju.edu.cn/schema"
-		schemaLocation="./PersonInfo.xsd" />
+		schemaLocation="PersonInfo.xsd" />
 
-	<include schemaLocation="./Student.xsd"/>
-	<include schemaLocation="./Course.xsd"/>
+	<include schemaLocation="Student.xsd"/>
+	<include schemaLocation="Course.xsd"/>
 	
 
 

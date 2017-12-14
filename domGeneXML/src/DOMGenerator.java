@@ -39,17 +39,17 @@ public class DOMGenerator {
             // document.setXmlStandalone(true);
 
             // 创建根节点
-            Element studentList = document.createElement("StudentList");
-            studentList.setAttribute("xmlns","http://jw.nju.edu.cn/schema");
-            studentList.setAttribute("xmlns:xsi","http://www.w3.org/2001/XMLSchema-instance");
-            studentList.setAttribute("xsi:schemaLocation","http://jw.nju.edu.cn/schema");
+            Element studentList = document.createElement("学生列表");
+            studentList.setAttribute("xmlns", "http://jw.nju.edu.cn/schema");
+            studentList.setAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+            studentList.setAttribute("xsi:schemaLocation", "http://jw.nju.edu.cn/schema");
 
             Iterator<StudentPO> it = students.iterator();
 
-            while(it.hasNext()) {
+            while (it.hasNext()) {
                 StudentPO stu = it.next();
 
-                Element student = document.createElement("Student");
+                Element student = document.createElement("学生信息");
 
                 // 创建子节点，并设置属性
                 Element person = document.createElement("基本信息");
@@ -60,9 +60,9 @@ public class DOMGenerator {
                 Element sex = document.createElement("性别");
                 sex.setTextContent(stu.getSex());
                 person.appendChild(sex);
-                Element born = document.createElement("出生日期");
-                sex.setTextContent(stu.getBirth());
-                person.appendChild(born);
+                Element birth = document.createElement("出生日期");
+                birth.setTextContent(stu.getBirth());
+                person.appendChild(birth);
                 Element country = document.createElement("国籍");
                 country.setTextContent(stu.getCountry());
                 person.appendChild(country);
@@ -89,7 +89,7 @@ public class DOMGenerator {
                 Element departmentName = document.createElement("院系部门名称");
                 departmentName.setTextContent(stu.getDepartmentPO().getName());
                 department.appendChild(departmentName);
-                Element depClassification = document.createElement("院系部门种类");
+                Element depClassification = document.createElement("院系种类编号");
                 depClassification.setTextContent(stu.getDepartmentPO().getType());
                 department.appendChild(depClassification);
                 person.appendChild(department);
@@ -107,7 +107,7 @@ public class DOMGenerator {
                 Element courseList = document.createElement("课程信息列表");
                 for (CoursePO coursePO :
                         stu.getCourseList()) {
-                    Element course = document.createElement("课程学习");
+                    Element course = document.createElement("课程信息");
                     Element courseID = document.createElement("课程编号");
                     courseID.setTextContent(coursePO.getNumber());
                     course.appendChild(courseID);
@@ -125,7 +125,7 @@ public class DOMGenerator {
                 for (ScorePO scorePO :
                         stu.getScoreList()) {
                     Element courseScore = document.createElement("课程成绩");
-                    courseScore.setAttribute("课程号", scorePO.getCourseNumber());
+                    courseScore.setAttribute("课程编号", scorePO.getCourseNumber());
                     courseScore.setAttribute("成绩性质", scorePO.getType());
 
                     Element score = document.createElement("成绩");

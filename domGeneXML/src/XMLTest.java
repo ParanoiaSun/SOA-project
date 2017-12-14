@@ -11,62 +11,61 @@ import org.dom4j.io.SAXValidator;
 import org.dom4j.io.XMLWriter;
 import org.dom4j.util.XMLErrorHandler;
 
-
-
 public class XMLTest {
-    static String XMLPath = "domGeneXML\\StudentList.xml";
-    static String XSDPath = "domGeneXML\\xsd\\StudentList.xsd";
+    static String XMLPath = "StudentList.xml";
+    static String XSDPath = "xsd/StudentList.xsd";
     //static String XMLPath = "domGeneXML\\Student.xml";
     //static String xsdPath = "domGeneXML\\xsd\\Student.xsd";
     public static void main(String [] args){
-        System.out.println(System.getProperty("user.dir"));//user.dirÖ¸¶¨ÁËµ±Ç°µÄÂ·¾¶
+        System.out.println(System.getProperty("user.dir"));//user.diræŒ‡å®šäº†å½“å‰çš„è·¯å¾„
         validateXMLByXSD(XMLPath,XSDPath);
     }
     /**
-     * Í¨¹ıXSD£¨XML Schema£©Ğ£ÑéXML
+     * é€šè¿‡XSDï¼ˆXML Schemaï¼‰æ ¡éªŒXML
      */
     public static void validateXMLByXSD(String xmlFileName,String xsdFileName) {
         try {
-            //´´½¨Ä¬ÈÏµÄXML´íÎó´¦ÀíÆ÷
+            //åˆ›å»ºé»˜è®¤çš„XMLé”™è¯¯å¤„ç†å™¨
             XMLErrorHandler errorHandler = new XMLErrorHandler();
-            //»ñÈ¡»ùÓÚ SAX µÄ½âÎöÆ÷µÄÊµÀı
+            //è·å–åŸºäº SAX çš„è§£æå™¨çš„å®ä¾‹
             SAXParserFactory factory = SAXParserFactory.newInstance();
-            //½âÎöÆ÷ÔÚ½âÎöÊ±ÑéÖ¤ XML ÄÚÈİ¡£
+            //è§£æå™¨åœ¨è§£ææ—¶éªŒè¯ XML å†…å®¹ã€‚
             factory.setValidating(true);
-            //Ö¸¶¨ÓÉ´Ë´úÂëÉú³ÉµÄ½âÎöÆ÷½«Ìá¹©¶Ô XML Ãû³Æ¿Õ¼äµÄÖ§³Ö¡£
+            //æŒ‡å®šç”±æ­¤ä»£ç ç”Ÿæˆçš„è§£æå™¨å°†æä¾›å¯¹ XML åç§°ç©ºé—´çš„æ”¯æŒã€‚
             factory.setNamespaceAware(true);
-            //Ê¹ÓÃµ±Ç°ÅäÖÃµÄ¹¤³§²ÎÊı´´½¨ SAXParser µÄÒ»¸öĞÂÊµÀı¡£
+            //ä½¿ç”¨å½“å‰é…ç½®çš„å·¥å‚å‚æ•°åˆ›å»º SAXParser çš„ä¸€ä¸ªæ–°å®ä¾‹ã€‚
             SAXParser parser = factory.newSAXParser();
-            //´´½¨Ò»¸ö¶ÁÈ¡¹¤¾ß
+            //åˆ›å»ºä¸€ä¸ªè¯»å–å·¥å…·
             SAXReader xmlReader = new SAXReader();
-            //»ñÈ¡ÒªĞ£ÑéxmlÎÄµµÊµÀı
-            Document xmlDocument = (Document) xmlReader.read(new File(xmlFileName));
-            //ÉèÖÃ XMLReader µÄ»ù´¡ÊµÏÖÖĞµÄÌØ¶¨ÊôĞÔ¡£ºËĞÄ¹¦ÄÜºÍÊôĞÔÁĞ±í¿ÉÒÔÔÚ [url]http://sax.sourceforge.net/?selected=get-set[/url] ÖĞÕÒµ½¡£
+            //è·å–è¦æ ¡éªŒxmlæ–‡æ¡£å®ä¾‹
+            Document xmlDocument = (Document) xmlReader.read(new File(XMLTest.class.getResource(xmlFileName).toURI()));
+            //è®¾ç½® XMLReader çš„åŸºç¡€å®ç°ä¸­çš„ç‰¹å®šå±æ€§ã€‚æ ¸å¿ƒåŠŸèƒ½å’Œå±æ€§åˆ—è¡¨å¯ä»¥åœ¨ [url]http://sax.sourceforge.net/?selected=get-set[/url] ä¸­æ‰¾åˆ°ã€‚
             parser.setProperty(
                     "http://java.sun.com/xml/jaxp/properties/schemaLanguage",
                     "http://www.w3.org/2001/XMLSchema");
             parser.setProperty(
                     "http://java.sun.com/xml/jaxp/properties/schemaSource",
-                    "file:" + xsdFileName);
-            //´´½¨Ò»¸öSAXValidatorĞ£Ñé¹¤¾ß£¬²¢ÉèÖÃĞ£Ñé¹¤¾ßµÄÊôĞÔ
+                    xsdFileName);
+            //åˆ›å»ºä¸€ä¸ªSAXValidatoræ ¡éªŒå·¥å…·ï¼Œå¹¶è®¾ç½®æ ¡éªŒå·¥å…·çš„å±æ€§
             SAXValidator validator = new SAXValidator(parser.getXMLReader());
-            //ÉèÖÃĞ£Ñé¹¤¾ßµÄ´íÎó´¦ÀíÆ÷£¬µ±·¢Éú´íÎóÊ±£¬¿ÉÒÔ´Ó´¦ÀíÆ÷¶ÔÏóÖĞµÃµ½´íÎóĞÅÏ¢¡£
+            //è®¾ç½®æ ¡éªŒå·¥å…·çš„é”™è¯¯å¤„ç†å™¨ï¼Œå½“å‘ç”Ÿé”™è¯¯æ—¶ï¼Œå¯ä»¥ä»å¤„ç†å™¨å¯¹è±¡ä¸­å¾—åˆ°é”™è¯¯ä¿¡æ¯ã€‚
             validator.setErrorHandler(errorHandler);
-            //Ğ£Ñé
+            //æ ¡éªŒ
             validator.validate(xmlDocument);
             OutputFormat format = OutputFormat.createPrettyPrint();
             format.setEncoding("GBK");
             XMLWriter writer = new XMLWriter(format);
-            //Èç¹û´íÎóĞÅÏ¢²»Îª¿Õ£¬ËµÃ÷Ğ£ÑéÊ§°Ü£¬´òÓ¡´íÎóĞÅÏ¢
+            //å¦‚æœé”™è¯¯ä¿¡æ¯ä¸ä¸ºç©ºï¼Œè¯´æ˜æ ¡éªŒå¤±è´¥ï¼Œæ‰“å°é”™è¯¯ä¿¡æ¯
             if (errorHandler.getErrors().hasContent()) {
-                System.out.println("XMLÎÄ¼şÍ¨¹ıXSDÎÄ¼şĞ£ÑéÊ§°Ü£¡");
+                System.out.println("XMLæ–‡ä»¶é€šè¿‡XSDæ–‡ä»¶æ ¡éªŒå¤±è´¥ï¼");
+//                System.out.println(errorHandler.getErrors());
 
                 writer.write(errorHandler.getErrors());
             } else {
-                System.out.println("Good! XMLÎÄ¼şÍ¨¹ıXSDÎÄ¼şĞ£Ñé³É¹¦£¡");
+                System.out.println("Good! XMLæ–‡ä»¶é€šè¿‡XSDæ–‡ä»¶æ ¡éªŒæˆåŠŸï¼");
             }
         } catch (Exception ex) {
-            System.out.println("XMLÎÄ¼ş: " + xmlFileName + " Í¨¹ıXSDÎÄ¼ş:" + xsdFileName + "¼ìÑéÊ§°Ü¡£\nÔ­Òò£º " + ex.getMessage());
+            System.out.println("XMLæ–‡ä»¶: " + xmlFileName + " é€šè¿‡XSDæ–‡ä»¶:" + xsdFileName + "æ£€éªŒå¤±è´¥ã€‚\nåŸå› ï¼š " + ex.getMessage());
             ex.printStackTrace();
         }
     }

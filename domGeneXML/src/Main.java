@@ -97,11 +97,11 @@ public class Main {
 
     public static List<ScorePO> getScorePO (String id, int[] score) {
         List<ScorePO> scoreList = new ArrayList<>();
-        scoreList.add(new ScorePO("25000080", "总评", id, score[0]));
-        scoreList.add(new ScorePO("25000090", "总评", id, score[1]));
-        scoreList.add(new ScorePO("25000110", "总评", id, score[2]));
-        scoreList.add(new ScorePO("25000350", "总评", id, score[3]));
-        scoreList.add(new ScorePO("25000370", "总评", id, score[4]));
+        scoreList.add(new ScorePO("25000080", "总评成绩", id, score[0]));
+        scoreList.add(new ScorePO("25000090", "总评成绩", id, score[1]));
+        scoreList.add(new ScorePO("25000110", "总评成绩", id, score[2]));
+        scoreList.add(new ScorePO("25000350", "总评成绩", id, score[3]));
+        scoreList.add(new ScorePO("25000370", "总评成绩", id, score[4]));
         return scoreList;
     }
 }

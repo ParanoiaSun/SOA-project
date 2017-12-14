@@ -2,7 +2,7 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
 	targetNamespace="http://jw.nju.edu.cn/schema"
 	xmlns:tns="http://jw.nju.edu.cn/schema" elementFormDefault="qualified">
-	<include schemaLocation="./Student.xsd"/>
+	<include schemaLocation="Student.xsd"/>
 
 	<element name="学生列表" type="tns:学生列表类型"/>
 	

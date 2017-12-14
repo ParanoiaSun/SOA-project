@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.nju.edu.cn/schema" xmlns:tns="http://www.nju.edu.cn/schema"  elementFormDefault="qualified">
-	<include schemaLocation="./Department.xsd"/>
-    
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.nju.edu.cn/schema"
+        xmlns:tns="http://www.nju.edu.cn/schema" elementFormDefault="qualified">
+    <include schemaLocation="Department.xsd"/>
+
     <element name="基本信息" type="tns:基本信息类型"/>
 
-     <complexType name="基本信息类型">
+    <complexType name="基本信息类型">
         <sequence>
             <element name="姓名" type="tns:姓名类型"/>
             <element name="性别" type="tns:性别类型"/>
@@ -19,7 +20,7 @@
         </sequence>
     </complexType>
 
-     <simpleType name="姓名类型">
+    <simpleType name="姓名类型">
         <restriction base="string">
             <minLength value="1"/>
             <maxLength value="10"/>
