@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.nju.edu.cn/schema" xmlns:tns="http://www.nju.edu.cn/schema"  elementFormDefault="qualified">
+
+	<element name="院系部门编号" type="tns:院系部门编号类型"/>
+    <element name="院系部门名称" type="tns:院系部门名称类型"/>
+    <element name="院系种类编号" type="tns:院系部门种类类型"/>
+
+	<!-- 这里假设院系部门编号为8位 -->
+    <simpleType name="院系部门编号类型">
+        <restriction base="string">
+            <length value="8"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="院系部门名称类型">
+        <restriction base="string">
+            <minLength value="1"/>
+            <maxLength value="10"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="院系部门种类类型">
+        <restriction base="string">
+            <enumeration value="院系"/>
+            <enumeration value="财务"/>
+            <enumeration value="教务"/>
+            <enumeration value="学工"/>
+            <enumeration value="招生"/>
+            <enumeration value="就业"/>
+        </restriction>
+    </simpleType>
+
+</schema>
