@@ -33,7 +33,7 @@ public class XMLTest {
             factory.setValidating(true);
             //指定由此代码生成的解析器将提供对 XML 名称空间的支持。
             factory.setNamespaceAware(true);
-            //使用当前配置的工厂参数创建 SAXParser 的一个新实例。
+            //使用当前配置的工厂参数创建 SAXTransformer 的一个新实例。
             SAXParser parser = factory.newSAXParser();
             //创建一个读取工具
             SAXReader xmlReader = new SAXReader();

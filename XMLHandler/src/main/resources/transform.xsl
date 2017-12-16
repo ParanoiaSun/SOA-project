@@ -16,6 +16,7 @@
                         <xsl:value-of select="."/>
                     </xsl:attribute>
                     <xsl:for-each select="$students//tns:课程成绩[@成绩性质='平时成绩' and @课程编号=$course]">
+                        <xsl:sort select="tns:成绩/tns:得分" order="descending"/>
                         <xsl:element name="成绩">
                             <xsl:element name="学号">
                                 <xsl:value-of select="tns:成绩/tns:学号"/>
@@ -32,6 +33,7 @@
                         <xsl:value-of select="."/>
                     </xsl:attribute>
                     <xsl:for-each select="$students//tns:课程成绩[@成绩性质='期末成绩' and @课程编号=$course]">
+                        <xsl:sort select="tns:成绩/tns:得分" order="descending"/>
                         <xsl:element name="成绩">
                             <xsl:element name="学号">
                                 <xsl:value-of select="tns:成绩/tns:学号"/>
@@ -48,6 +50,7 @@
                         <xsl:value-of select="."/>
                     </xsl:attribute>
                     <xsl:for-each select="$students//tns:课程成绩[@成绩性质='总评成绩' and @课程编号=$course]">
+                        <xsl:sort select="tns:成绩/tns:得分" order="descending"/>
                         <xsl:element name="成绩">
                             <xsl:element name="学号">
                                 <xsl:value-of select="tns:成绩/tns:学号"/>
