@@ -2,40 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b1e5f7b6-54f9-49c6-87cd-c17542172e6c" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__dom4j_dom4j_1_6_1.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_saxon_Saxon_HE_9_8_0_6.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xml_apis_xml_apis_1_0_b2.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/StudentList.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/XMLHandler/XMLHandler.iml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/XMLHandler/pom.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/XMLHandler/src/main/java/DOMGenerator.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/XMLHandler/src/main/java/Main.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/XMLHandler/src/main/java/TransformXML.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/XMLHandler/src/main/java/XMLTest.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/XMLHandler/src/main/java/po/CoursePO.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/XMLHandler/src/main/java/po/DepartmentPO.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/XMLHandler/src/main/java/po/ScorePO.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/XMLHandler/src/main/java/po/StudentPO.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/XMLHandler/src/main/resources/StudentList.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/XMLHandler/src/main/resources/transform.xsl" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/XMLHandler/src/main/resources/xsd/Course.xsd" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/XMLHandler/src/main/resources/xsd/Department.xsd" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/XMLHandler/src/main/resources/xsd/PersonInfo.xsd" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/XMLHandler/src/main/resources/xsd/ScoreList.xsd" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/XMLHandler/src/main/resources/xsd/Student.xsd" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/XMLHandler/src/main/resources/xsd/StudentList.xsd" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/domGeneXML/src/StudentList.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/domGeneXML/src/TransformXML.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/XMLHandler/src/main/resources/ScoreList.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/domGeneXML/out/production/domGeneXML/student.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/domGeneXML/out/production/domGeneXML/xsd/ScoreList.xsd" afterPath="$PROJECT_DIR$/domGeneXML/out/production/domGeneXML/xsd/ScoreList.xsd" />
-      <change beforePath="$PROJECT_DIR$/domGeneXML/src/xsd/ScoreList.xsd" afterPath="$PROJECT_DIR$/domGeneXML/src/xsd/ScoreList.xsd" />
     </list>
     <ignored path="$PROJECT_DIR$/XMLHandler/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -105,7 +73,7 @@
         <entry file="file://$PROJECT_DIR$/domGeneXML/src/StudentList.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="54" lean-forward="true" selection-start-line="0" selection-start-column="54" selection-end-line="0" selection-end-column="54" />
+              <caret line="0" column="54" lean-forward="false" selection-start-line="0" selection-start-column="54" selection-end-line="0" selection-end-column="54" />
               <folding>
                 <element signature="n#基本信息#0;n#学生信息#0;n#学生列表#0;n#!!top" expanded="false" />
                 <element signature="n#课程信息列表#0;n#学生信息#0;n#学生列表#0;n#!!top" expanded="false" />
@@ -128,7 +96,7 @@
         <entry file="file://$PROJECT_DIR$/XMLHandler/src/main/resources/transform.xsl">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="288">
-              <caret line="45" column="67" lean-forward="true" selection-start-line="45" selection-start-column="67" selection-end-line="45" selection-end-column="67" />
+              <caret line="45" column="67" lean-forward="false" selection-start-line="45" selection-start-column="67" selection-end-line="45" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -137,8 +105,8 @@
       <file leaf-file-name="XMLTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/XMLHandler/src/main/java/XMLTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="12" column="44" lean-forward="true" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+            <state relative-caret-position="300">
+              <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -176,6 +144,11 @@
     </replaceStrings>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="151250007 &lt;151250007@smail.nju.edu.cn&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
@@ -903,7 +876,7 @@
       <workItem from="1513259985996" duration="8140000" />
       <workItem from="1513304092138" duration="648000" />
       <workItem from="1513406387931" duration="7670000" />
-      <workItem from="1513415644967" duration="6451000" />
+      <workItem from="1513415644967" duration="6583000" />
     </task>
     <task id="LOCAL-00001" summary="纠正部分 xsd">
       <created>1513265731661</created>
@@ -919,7 +892,14 @@
       <option name="project" value="LOCAL" />
       <updated>1513268003274</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="创建 maven 项目 XMLHandler 并迁移先前作业&#10;文档3创建成功，且已经过 XMLTest 检验">
+      <created>1513439631534</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1513439631534</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -934,7 +914,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28875000" />
+    <option name="totallyTimeSpent" value="29007000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -957,7 +937,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.18347639" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2249093" sideWeight="0.8165236" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2249093" sideWeight="0.8165236" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1058,7 +1038,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="纠正部分 xsd" />
     <MESSAGE value="纠正xsd, 修改为三种成绩类型" />
-    <option name="LAST_COMMIT_MESSAGE" value="纠正xsd, 修改为三种成绩类型" />
+    <MESSAGE value="创建 maven 项目 XMLHandler 并迁移先前作业&#10;文档3创建成功，且已经过 XMLTest 检验" />
+    <option name="LAST_COMMIT_MESSAGE" value="创建 maven 项目 XMLHandler 并迁移先前作业&#10;文档3创建成功，且已经过 XMLTest 检验" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1447,7 +1429,7 @@
     <entry file="file://$PROJECT_DIR$/domGeneXML/src/StudentList.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="54" lean-forward="true" selection-start-line="0" selection-start-column="54" selection-end-line="0" selection-end-column="54" />
+          <caret line="0" column="54" lean-forward="false" selection-start-line="0" selection-start-column="54" selection-end-line="0" selection-end-column="54" />
           <folding>
             <element signature="n#基本信息#0;n#学生信息#0;n#学生列表#0;n#!!top" expanded="false" />
             <element signature="n#课程信息列表#0;n#学生信息#0;n#学生列表#0;n#!!top" expanded="false" />
@@ -1466,7 +1448,7 @@
     <entry file="file://$PROJECT_DIR$/XMLHandler/src/main/resources/transform.xsl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
-          <caret line="45" column="67" lean-forward="true" selection-start-line="45" selection-start-column="67" selection-end-line="45" selection-end-column="67" />
+          <caret line="45" column="67" lean-forward="false" selection-start-line="45" selection-start-column="67" selection-end-line="45" selection-end-column="67" />
           <folding />
         </state>
       </provider>
@@ -1481,8 +1463,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/XMLHandler/src/main/java/XMLTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="12" column="44" lean-forward="true" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+        <state relative-caret-position="300">
+          <caret line="24" column="7" lean-forward="true" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
           <folding />
         </state>
       </provider>
