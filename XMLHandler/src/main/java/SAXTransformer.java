@@ -6,6 +6,7 @@ import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,16 +31,36 @@ public class SAXTransformer {
             List courseGradeList = root.elements("课程成绩");
             Element courseGrade;
             Element grade;
+            List<String> students = new ArrayList<>();
 
             for (Object o1 : courseGradeList) {
                 courseGrade = (Element) o1;
                 List gradesList = courseGrade.elements("成绩");
                 for(Object o2 : gradesList) {
                     grade = (Element) o2;
-                    String score;
-                    score = grade.element("得分").getTextTrim();
+                    String score = grade.element("得分").getTextTrim();
+                    String stuId = grade.element("学号").getTextTrim();
                     // 找出得分为60分及以上的同学并删除成绩节点
-                    if(Integer.valueOf(score) >= 60) {
+                    if(Integer.valueOf(score) < 60) {
+                        students.add(stuId);
+//                        grade.detach();
+                    }
+                }
+            }
+
+            for (Object o1 : courseGradeList) {
+                courseGrade = (Element) o1;
+                List gradesList = courseGrade.elements("成绩");
+                for(Object o2 : gradesList) {
+                    grade = (Element) o2;
+                    String stuId = grade.element("学号").getTextTrim();
+                    // 找出得分为60分及以上的同学并删除成绩节点
+                    boolean delete = true;
+                    for(String s : students) {
+                        if(s.equals(stuId))
+                            delete = false;
+                    }
+                    if(delete) {
                         grade.detach();
                     }
                 }
