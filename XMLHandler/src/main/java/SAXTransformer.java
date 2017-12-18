@@ -1,46 +1,59 @@
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.DefaultHandler;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.OutputFormat;
+import org.dom4j.io.SAXReader;
+import org.dom4j.io.XMLWriter;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import java.io.IOException;
+import java.io.*;
+import java.util.List;
 
 /**
  * @author tsnk
  * @since 17/12/2017.
+ *
+ * Edit by paranoia on 18/12/2017
  */
 public class SAXTransformer {
+
+    private static final String XML_FILE = "./src/main/resources/ScoreList.xml";
+
     public static void main(String args[]) {
         try {
+            SAXReader reader = new SAXReader();
+            reader.setEncoding("utf-8");
+            Document document = reader.read(XML_FILE);
+            Element root = document.getRootElement();
 
-            SAXParserFactory factory = SAXParserFactory.newInstance();
-            //解析器在解析时验证 XML 内容。
-            factory.setValidating(true);
-            //指定由此代码生成的解析器将提供对 XML 名称空间的支持。
-            factory.setNamespaceAware(true);
-            //使用当前配置的工厂参数创建 SAXTransformer 的一个新实例。
-            SAXParser parser = factory.newSAXParser();
-            //创建一个读取工具
-            XMLReader xmlReader = parser.getXMLReader();
-            XMLEvents xmlHndlr = new XMLEvents();
-            xmlReader.setErrorHandler(xmlHndlr);
-            xmlReader.parse("ScoreList.xml");
-        } catch (ParserConfigurationException pce) {
-            pce.printStackTrace();
-        } catch (SAXException saxe) {
-            saxe.printStackTrace();
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
+            // 取得某节点下名为"课程成绩"的所有字节点
+            List courseGradeList = root.elements("课程成绩");
+            Element courseGrade;
+            Element grade;
+
+            for (Object o1 : courseGradeList) {
+                courseGrade = (Element) o1;
+                List gradesList = courseGrade.elements("成绩");
+                for(Object o2 : gradesList) {
+                    grade = (Element) o2;
+                    String score;
+                    score = grade.element("得分").getTextTrim();
+                    // 找出得分为60分及以上的同学并删除成绩节点
+                    if(Integer.valueOf(score) >= 60) {
+                        grade.detach();
+                    }
+                }
+            }
+
+            OutputFormat format = new OutputFormat("    ",true);
+            format.setEncoding("UTF-8");//设置编码格式
+            format.setNewlines(true);
+            format.setIndent(true);
+            format.setTrimText(true);
+            XMLWriter xmlWriter = new XMLWriter(new FileOutputStream("./src/main/resources/NotPassScoreList.xml"),format);
+
+            xmlWriter.write(document);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    }
-}
-
-class XMLEvents extends DefaultHandler {
-    @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        super.startElement(uri, localName, qName, attributes);
     }
 }
