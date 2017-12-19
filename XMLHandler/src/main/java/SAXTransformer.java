@@ -31,33 +31,34 @@ public class SAXTransformer {
             List courseGradeList = root.elements("课程成绩");
             Element courseGrade;
             Element grade;
-            List<String> students = new ArrayList<>();
+            List<String[]> students = new ArrayList<>();
 
             for (Object o1 : courseGradeList) {
                 courseGrade = (Element) o1;
                 List gradesList = courseGrade.elements("成绩");
+                String courseId = courseGrade.attributeValue("课程编号");
                 for(Object o2 : gradesList) {
                     grade = (Element) o2;
                     String score = grade.element("得分").getTextTrim();
                     String stuId = grade.element("学号").getTextTrim();
-                    // 找出得分为60分及以上的同学并删除成绩节点
                     if(Integer.valueOf(score) < 60) {
-                        students.add(stuId);
-//                        grade.detach();
+                        String[] temp = new String[2];
+                        temp[0] = courseId; temp[1] = stuId;
+                        students.add(temp);
                     }
                 }
             }
 
             for (Object o1 : courseGradeList) {
                 courseGrade = (Element) o1;
+                String courseId = courseGrade.attributeValue("课程编号");
                 List gradesList = courseGrade.elements("成绩");
                 for(Object o2 : gradesList) {
                     grade = (Element) o2;
                     String stuId = grade.element("学号").getTextTrim();
-                    // 找出得分为60分及以上的同学并删除成绩节点
                     boolean delete = true;
-                    for(String s : students) {
-                        if(s.equals(stuId))
+                    for(String[] s : students) {
+                        if(s[0].equals(courseId) && s[1].equals(stuId))
                             delete = false;
                     }
                     if(delete) {
@@ -65,6 +66,8 @@ public class SAXTransformer {
                     }
                 }
             }
+
+            System.out.println(document.asXML());
 
             OutputFormat format = new OutputFormat("    ",true);
             format.setEncoding("UTF-8");//设置编码格式
