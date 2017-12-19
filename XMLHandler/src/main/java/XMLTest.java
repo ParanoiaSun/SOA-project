@@ -10,14 +10,16 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 
 public class XMLTest {
-    static String XMLPath = "ScoreList.xml";
+    static String XMLPath1 = "ScoreList.xml";
+    static String XMLPath2 = "NotPassScoreList.xml";
     static String XSDPath = "xsd/ScoreList.xsd";
 
-    //static String XMLPath = "domGeneXML\\Student.xml";
-    //static String xsdPath = "domGeneXML\\xsd\\Student.xsd";
+//    static String XMLPath = "domGeneXML\\Student.xml";
+//    static String xsdPath = "domGeneXML\\xsd\\Student.xsd";
     public static void main(String[] args) {
         System.out.println(System.getProperty("user.dir"));//user.dir指定了当前的路径
-        validateXMLByXSD(XMLPath, XSDPath);
+        validateXMLByXSD(XMLPath1, XSDPath);
+        validateXMLByXSD(XMLPath2, XSDPath);
     }
 
     /**
@@ -62,7 +64,7 @@ public class XMLTest {
 
                 writer.write(errorHandler.getErrors());
             } else {
-                System.out.println("Good! XML文件通过XSD文件校验成功！");
+                System.out.println("Good! XML文件 " + xmlFileName + " 通过XSD文件校验成功！");
             }
         } catch (Exception ex) {
             System.out.println("XML文件: " + xmlFileName + " 通过XSD文件:" + xsdFileName + "检验失败。\n原因： " + ex.getMessage());
