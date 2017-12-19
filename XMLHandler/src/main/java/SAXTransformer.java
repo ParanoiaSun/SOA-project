@@ -1,5 +1,4 @@
 import org.dom4j.Document;
-import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
@@ -67,7 +66,7 @@ public class SAXTransformer {
                 }
             }
 
-            System.out.println(document.asXML());
+//            System.out.println(document.asXML());
 
             OutputFormat format = new OutputFormat("    ",true);
             format.setEncoding("UTF-8");//设置编码格式

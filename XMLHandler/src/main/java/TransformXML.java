@@ -12,14 +12,16 @@ public class TransformXML {
         try {
             TransformerFactory factory = TransformerFactory.newInstance();
             // get XSLT file
-            Source stylesheetSource = new StreamSource(new File("transform.xsl").getAbsoluteFile());
+            Source stylesheetSource = new StreamSource(new File("src/main/resources/transform.xsl").getAbsoluteFile());
             Transformer transformer = factory.newTransformer(stylesheetSource);
             // get Input XML file
-            String inputPathname = "StudentList.xml";
+            String inputPathname = "src/main/resources/StudentList.xml";
             Source inputSource = new StreamSource(new File(inputPathname).getAbsoluteFile());
             // set Output XML result file
-            String outputPathname = "ScoreList.xml";
+            String outputPathname = "src/main/resources/ScoreList.xml";
             Result outputResult = new StreamResult(new File(outputPathname).getAbsoluteFile());
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
             // Transform
             transformer.transform(inputSource, outputResult);
         } catch (TransformerException te) {
