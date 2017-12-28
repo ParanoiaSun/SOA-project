@@ -17,7 +17,7 @@ public class Client extends HttpServlet implements ReqRespListener {
 
     private static final long serialVersionUID = 1L;
 
-    private SOAPConnection connection;
+    private SOAPConnection connection;  
     private static MessageFactory messageFactory = null;
 
     @Override
@@ -32,12 +32,11 @@ public class Client extends HttpServlet implements ReqRespListener {
             e.printStackTrace();
         } catch (SOAPException e) {
             e.printStackTrace();
-        }
+        }  
     }
-
     //使用传递学号给用户
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)  
             throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
@@ -46,7 +45,7 @@ public class Client extends HttpServlet implements ReqRespListener {
 
         out.println(
                 "<form method='POST' action='"
-                        + response.encodeURL(request.getContextPath() + "/Receiver")
+                        + request.getContextPath() + "/Receiver"
                         + "'>");
         out.println(
                 " <input type='text' name='number' value=''>");
@@ -56,7 +55,7 @@ public class Client extends HttpServlet implements ReqRespListener {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws ServletException, IOException {  
     }
 
     @Override
@@ -64,7 +63,7 @@ public class Client extends HttpServlet implements ReqRespListener {
         SOAPPart soappart = msg.getSOAPPart();
         try {
             SOAPEnvelope incomingEnvelope;
-            incomingEnvelope = soappart.getEnvelope();
+            incomingEnvelope = soappart.getEnvelope();        
             SOAPBody body = incomingEnvelope.getBody();
 
             String ns = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
@@ -78,13 +77,13 @@ public class Client extends HttpServlet implements ReqRespListener {
                 String score = soapElement.getValue();
                 System.out.println("课程编号：" + courseID + " 成绩性质：" + scoreType + " 得分：" + score);
             }
-            SOAPElement element;
+            SOAPElement element;  
             element = (SOAPElement) iterator.next();
             SOAPMessage message = messageFactory.createMessage();
             SOAPEnvelope envelope = message.getSOAPPart().getEnvelope();
 
             SOAPBody responsebody = envelope.getBody();
-            String responseText = "Got the SOAP message indicating there are " + element.getValue() + " laptops available.";
+            String responseText = "Got the SOAP message indicating there are " + element.getValue() + " laptops available.";  
             responsebody.addChildElement(envelope.createName("Response")).addTextNode(responseText);
             return message;
         } catch (SOAPException e) {
@@ -92,6 +91,6 @@ public class Client extends HttpServlet implements ReqRespListener {
             return null;
         }
     }
-
-
+  
+      
 }  
