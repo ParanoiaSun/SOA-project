@@ -11,10 +11,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.namespace.QName;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.soap.*;
+import javax.xml.ws.Dispatch;
+import javax.xml.ws.Service;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 
@@ -23,14 +27,18 @@ import java.net.URL;
  */
 @WebServlet("/Receiver")
 public class Receiver extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private SOAPConnection connection;  
+    private String ns ="http://www.w3.org/1999/02/22-rdf-syntax-ns#" ;
+    private String wsdlUrl = "http://localhost:8989/ms?wsdl";
+    private static final long serialVersionUID = 1L;
+	private SOAPConnection connection;
+	private SOAPElementFactory factory;
     public Receiver() {
         super();
     }
     
     public void init() {
-        try {  
+        try {
+            factory=SOAPElementFactory.newInstance();
             SOAPConnectionFactory connectionFactory = SOAPConnectionFactory.newInstance();  
             connection = connectionFactory.createConnection();  
         } catch (UnsupportedOperationException e) {  
@@ -52,31 +60,43 @@ public class Receiver extends HttpServlet {
             SOAPEnvelope envelope = soappart.getEnvelope();
             SOAPHeader header = envelope.getHeader();
             SOAPBody body = envelope.getBody();
+            QName eName = new QName(ns, "RDF", "rdf");   //<nn:add xmlns="ns" />
+            SOAPBodyElement bodyElement = body.addBodyElement(eName);
+
             NodeList scoreList=readXML(number);
             for(int i=0;i<scoreList.getLength();i++){//遍历节点
                 Element element=(Element)scoreList.item(i);
                 String scoreType=element.getAttribute("成绩性质");
                 String course=element.getAttribute("课程编号");
                 String score=element.getElementsByTagName("得分").item(0).getFirstChild().getNodeValue();
-
-                //生成soapmessage
+                SOAPElement scoreElement= bodyElement.addChildElement("课程成绩");
+                scoreElement.setValue(score);
+                scoreElement.addAttribute(envelope.createName("成绩性质"),scoreType);
+                scoreElement.addAttribute(envelope.createName("课程编号"),course);
             }
+            outgoingMessage.saveChanges();
+            outgoingMessage.writeTo(System.out);
+            System.out.println("\n invoking......");
+
+            StringBuffer serverUrl = new StringBuffer();
+            serverUrl.append(request.getScheme()).append("://").append(request.getServerName());
+            serverUrl.append(":").append(request.getServerPort()).append(request.getContextPath());
+            System.out.print("serverUrl: "+serverUrl);
 
 
+            String baseUrl = serverUrl.toString();
+            URL url = new URL(baseUrl + "/test.html");
 
-            body.addBodyElement(envelope.createName("numberAvailable", "laptops", "http://ecodl.taobao.com/")).addTextNode("216");  
+            AttachmentPart attachmentpart = outgoingMessage.createAttachmentPart(new DataHandler(url));
+            attachmentpart.setContentType("text/html");
+            outgoingMessage.addAttachmentPart(attachmentpart);
 
-            StringBuffer serverUrl = new StringBuffer();  
-            serverUrl.append(request.getScheme()).append("://").append(request.getServerName());  
-            serverUrl.append(":").append(request.getServerPort()).append(request.getContextPath());  
-            String baseUrl = serverUrl.toString();  
-            URL url = new URL(baseUrl + "/test.html");  
-            AttachmentPart attachmentpart = outgoingMessage.createAttachmentPart(new DataHandler(url));  
-            attachmentpart.setContentType("text/html");  
-            outgoingMessage.addAttachmentPart(attachmentpart);  
-            URL client = new URL(baseUrl + "/Client");  
-            SOAPMessage incomingMessage = connection.call(outgoingMessage, client);  
-            incomingMessage.writeTo(System.out);
+            URL client = new URL(baseUrl + "/client");
+            SOAPMessage incomingMessage = connection.call(outgoingMessage, client);
+            if (incomingMessage != null) {
+                incomingMessage.writeTo(System.out);
+                System.out.println();
+            }
         } catch (Exception e) {
             e.printStackTrace();  
         }  

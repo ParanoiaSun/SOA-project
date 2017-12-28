@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.messaging.ReqRespListener;
+import javax.xml.namespace.QName;
 import javax.xml.soap.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -61,10 +62,19 @@ public class Client extends HttpServlet  implements ReqRespListener{
         try {  
             SOAPEnvelope incomingEnvelope;        
             incomingEnvelope = soappart.getEnvelope();        
-            SOAPBody body = incomingEnvelope.getBody();  
-      
-            Iterator<?> iterator = body.getChildElements(incomingEnvelope.createName("numberAvailable", "laptops", "http://ecodl.taobao.com/"));  
-      
+            SOAPBody body = incomingEnvelope.getBody();
+
+            String ns ="http://www.w3.org/1999/02/22-rdf-syntax-ns#" ;
+            QName eName = new QName(ns, "RDF", "rdf");
+            SOAPBodyElement bodyElement = body.addBodyElement(eName);
+            Iterator<SOAPElement> iterator=bodyElement.getChildElements();
+            while(iterator.hasNext()){
+                SOAPElement soapElement=iterator.next();
+                String scoreType=soapElement.getAttribute("成绩性质");
+                String courseID=soapElement.getAttribute("课程编号");
+                String score =soapElement.getValue();
+                System.out.println("课程编号："+courseID+" 成绩性质："+scoreType+" 得分："+score);
+            }
             SOAPElement element;  
             element = (SOAPElement) iterator.next();
             SOAPMessage message = messageFactory.createMessage();  
@@ -72,8 +82,7 @@ public class Client extends HttpServlet  implements ReqRespListener{
       
             SOAPBody responsebody = envelope.getBody();  
             String responseText = "Got the SOAP message indicating there are " + element.getValue() + " laptops available.";  
-            responsebody.addChildElement(envelope.createName("Response")).addTextNode(responseText);  
-      
+            responsebody.addChildElement(envelope.createName("Response")).addTextNode(responseText);
             return message;  
         } catch (SOAPException e) {  
             e.printStackTrace();  
