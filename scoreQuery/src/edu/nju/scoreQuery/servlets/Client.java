@@ -1,34 +1,16 @@
 package edu.nju.scoreQuery.servlets;
 
-import java.io.FileOutputStream;  
-import java.io.IOException;  
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.net.URL;
-import java.util.Iterator;
-
-import javax.activation.DataHandler;  
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;  
-import javax.servlet.http.HttpServletRequest;  
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.xml.messaging.JAXMServlet;
 import javax.xml.messaging.ReqRespListener;
-import javax.xml.soap.AttachmentPart;  
-import javax.xml.soap.MessageFactory;  
-import javax.xml.soap.SOAPBody;  
-import javax.xml.soap.SOAPConnection;  
-import javax.xml.soap.SOAPConnectionFactory;
-import javax.xml.soap.SOAPElement;
-import javax.xml.soap.SOAPEnvelope;  
-import javax.xml.soap.SOAPException;  
-import javax.xml.soap.SOAPHeader;  
-import javax.xml.soap.SOAPMessage;  
-import javax.xml.soap.SOAPPart;  
-  
+import javax.xml.soap.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Iterator;
+
 @WebServlet("/Client")
 public class Client extends HttpServlet  implements ReqRespListener{  
   
@@ -84,8 +66,7 @@ public class Client extends HttpServlet  implements ReqRespListener{
             Iterator<?> iterator = body.getChildElements(incomingEnvelope.createName("numberAvailable", "laptops", "http://ecodl.taobao.com/"));  
       
             SOAPElement element;  
-            element = (SOAPElement) iterator.next();  
-      
+            element = (SOAPElement) iterator.next();
             SOAPMessage message = messageFactory.createMessage();  
             SOAPEnvelope envelope = message.getSOAPPart().getEnvelope();  
       

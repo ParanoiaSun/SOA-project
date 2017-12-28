@@ -1,42 +1,22 @@
 package edu.nju.scoreQuery.servlets;
 
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Properties;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import javax.activation.DataHandler;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
-import javax.xml.soap.AttachmentPart;
-import javax.xml.soap.MessageFactory;
-import javax.xml.soap.SOAPBody;
-import javax.xml.soap.SOAPConnection;
-import javax.xml.soap.SOAPConnectionFactory;
-import javax.xml.soap.SOAPEnvelope;
-import javax.xml.soap.SOAPException;
-import javax.xml.soap.SOAPHeader;
-import javax.xml.soap.SOAPMessage;
-import javax.xml.soap.SOAPPart;
-
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.soap.*;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * Servlet implementation class showMyOrderServlet
@@ -62,18 +42,30 @@ public class Receiver extends HttpServlet {
     
     @Override  
     protected void doGet(HttpServletRequest request, HttpServletResponse response)  
-            throws ServletException, IOException {  
+            throws ServletException, IOException {
     	String number=request.getParameter("number");//学号
-        try {  
-            MessageFactory messageFactory = MessageFactory.newInstance();  
-            SOAPMessage outgoingMessage = messageFactory.createMessage();  
-            SOAPPart soappart = outgoingMessage.getSOAPPart();  
-            SOAPEnvelope envelope = soappart.getEnvelope();  
-            SOAPHeader header = envelope.getHeader();  
-            SOAPBody body = envelope.getBody();  
-              
+
+        try {
+            MessageFactory messageFactory = MessageFactory.newInstance();
+            SOAPMessage outgoingMessage = messageFactory.createMessage();
+            SOAPPart soappart = outgoingMessage.getSOAPPart();
+            SOAPEnvelope envelope = soappart.getEnvelope();
+            SOAPHeader header = envelope.getHeader();
+            SOAPBody body = envelope.getBody();
+            NodeList scoreList=readXML(number);
+            for(int i=0;i<scoreList.getLength();i++){//遍历节点
+                Element element=(Element)scoreList.item(i);
+                String scoreType=element.getAttribute("成绩性质");
+                String course=element.getAttribute("课程编号");
+                String score=element.getElementsByTagName("得分").item(0).getFirstChild().getNodeValue();
+
+                //生成soapmessage
+            }
+
+
+
             body.addBodyElement(envelope.createName("numberAvailable", "laptops", "http://ecodl.taobao.com/")).addTextNode("216");  
-              
+
             StringBuffer serverUrl = new StringBuffer();  
             serverUrl.append(request.getScheme()).append("://").append(request.getServerName());  
             serverUrl.append(":").append(request.getServerPort()).append(request.getContextPath());  
@@ -85,7 +77,7 @@ public class Receiver extends HttpServlet {
             URL client = new URL(baseUrl + "/Client");  
             SOAPMessage incomingMessage = connection.call(outgoingMessage, client);  
             incomingMessage.writeTo(System.out);
-        } catch (SOAPException e) {  
+        } catch (Exception e) {
             e.printStackTrace();  
         }  
           
@@ -95,6 +87,25 @@ public class Receiver extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)  
             throws ServletException, IOException {  
         doGet(req, resp);  
-    }  
+    }
 
+    private static NodeList readXML(String number)throws  Exception{
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        DocumentBuilder db = dbf.newDocumentBuilder();
+        Document document = db.parse(new File("StudentList.xml"));
+        NodeList list = document.getElementsByTagName("学生信息");
+        NodeList scoreList=null;
+        for (int i = 0; i < list.getLength(); ++i)
+        {
+            Element element = (Element) list.item(i);
+            String content= element.getElementsByTagName("学号").item(0)
+                    .getFirstChild().getNodeValue();
+            if (!content.equals(number)){
+                continue;
+            }
+            scoreList= element.getElementsByTagName("课程成绩");
+            System.out.print(scoreList.getLength());
+        }
+        return scoreList;
+    }
 }
