@@ -66,6 +66,8 @@ public class QueryServlet extends HttpServlet {
                 scoreElement.addAttribute(envelope.createName("成绩性质"), scoreType);
                 scoreElement.addAttribute(envelope.createName("课程编号"), course);
             }
+            body.addFault(envelope.createName("Client"),"消息被不正确地构成，或包含了不正确的信息");
+            body.addFault(envelope.createName("Server"),"服务器有问题，因此无法处理进行下去");
             outgoingMessage.saveChanges();
             System.out.println();
             outgoingMessage.writeTo(System.out);
