@@ -29,6 +29,7 @@ public class Receiver extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private SOAPConnection connection;
     private SOAPElementFactory factory;
+
     public Receiver() {
         super();
     }
@@ -39,12 +40,12 @@ public class Receiver extends HttpServlet {
             SOAPConnectionFactory connectionFactory = SOAPConnectionFactory.newInstance();
             connection = connectionFactory.createConnection();
         } catch (UnsupportedOperationException | SOAPException e) {
-            e.printStackTrace();  
+            e.printStackTrace();
         }
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)  
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String number = request.getParameter("number");//学号
 
@@ -58,7 +59,7 @@ public class Receiver extends HttpServlet {
             QName eName = new QName(ns, "RDF", "rdf");   //<nn:add xmlns="ns" />
             SOAPBodyElement bodyElement = body.addBodyElement(eName);
 
-            String filePath = request.getServletContext().getRealPath("/") + "StudentList.xml";
+            String filePath = Receiver.class.getResource("StudentList.xml").getPath();
             NodeList scoreList = readXML(number, filePath);
             for (int i = 0; i < scoreList.getLength(); i++) {//遍历节点
                 Element element = (Element) scoreList.item(i);
@@ -97,7 +98,7 @@ public class Receiver extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        doGet(req, resp);  
+        doGet(req, resp);
     }
 
     private static NodeList readXML(String number, String filePath) throws Exception {
