@@ -28,14 +28,9 @@ public class ModifyServlet extends JAXMServlet implements ReqRespListener {
 
             SOAPBody reqBody = soapMessage.getSOAPPart().getEnvelope().getBody();
             String type = reqBody.getElementsByTagName("tns:课程成绩").item(0).getAttributes().item(0).getTextContent();
-
             String course = reqBody.getElementsByTagName("tns:课程成绩").item(0).getAttributes().item(1).getTextContent();
-
             String id = reqBody.getElementsByTagName("tns:学号").item(0).getTextContent();
-
             String score = reqBody.getElementsByTagName("tns:得分").item(0).getTextContent();
-
-            NodeList scoreList = modifyXML(type, course, id, score);
 
             SOAPEnvelope envelope = resp.getSOAPPart().getEnvelope();
             SOAPHeader header = envelope.getHeader();
@@ -43,12 +38,21 @@ public class ModifyServlet extends JAXMServlet implements ReqRespListener {
             QName eName = new QName(ns, "RDF", "rdf");   //<nn:add xmlns="ns" />
             SOAPBodyElement bodyElement = body.addBodyElement(eName);
 
-            for (int i = 0; i < scoreList.getLength(); i++) {//遍历节点
-                Element element = (Element) scoreList.item(i);
-                SOAPElement scoreElement = bodyElement.addChildElement("课程成绩");
-                scoreElement.setValue(element.getElementsByTagName("得分").item(0).getFirstChild().getNodeValue());
-                scoreElement.addAttribute(envelope.createName("成绩性质"), element.getAttribute("成绩性质"));
-                scoreElement.addAttribute(envelope.createName("课程编号"), element.getAttribute("课程编号"));
+            if (type == null || course == null || id == null || score == null) {
+                body.addFault(envelope.createName("Client"), "传入参数错误");
+            } else {
+                NodeList scoreList = modifyXML(type, course, id, score);
+                if (scoreList == null) {
+                    body.addFault(envelope.createName("Server"), "服务器错误 或 该成绩信息不存在");
+                } else {
+                    for (int i = 0; i < scoreList.getLength(); i++) {//遍历节点
+                        Element element = (Element) scoreList.item(i);
+                        SOAPElement scoreElement = bodyElement.addChildElement("课程成绩");
+                        scoreElement.setValue(element.getElementsByTagName("得分").item(0).getFirstChild().getNodeValue());
+                        scoreElement.addAttribute(envelope.createName("成绩性质"), element.getAttribute("成绩性质"));
+                        scoreElement.addAttribute(envelope.createName("课程编号"), element.getAttribute("课程编号"));
+                    }
+                }
             }
             resp.saveChanges();
         } catch (Exception e) {

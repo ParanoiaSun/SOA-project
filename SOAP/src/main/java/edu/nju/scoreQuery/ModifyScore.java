@@ -14,20 +14,18 @@ public class ModifyScore {
     public static void main(String[] args) throws IOException, SOAPException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] params = new String[4];
-        // TODO uncomment before commit
-//        System.out.print("学生学号: ");
-//        params[0] = br.readLine();
-//        System.out.print("课程编号: ");
-//        params[1] = br.readLine();
-//        System.out.print("成绩性质: ");
-//        params[2] = br.readLine();
-//        System.out.print("分数: ");
-//        params[3] = br.readLine();
-        // TODO delete before commit
-        params[0] = "151250127";
-        params[1] = "25000080";
-        params[2] = "平时成绩";
-        params[3] = "100";
+        System.out.print("学生学号: ");
+        params[0] = br.readLine();
+        System.out.print("课程编号: ");
+        params[1] = br.readLine();
+        System.out.print("成绩性质: ");
+        params[2] = br.readLine();
+        System.out.print("分数: ");
+        params[3] = br.readLine();
+//        params[0] = "151250127";
+//        params[1] = "25000080";
+//        params[2] = "平时成绩";
+//        params[3] = "100";
 
         SOAPConnection connection = SOAPConnectionFactory.newInstance().createConnection();
         SOAPMessage outgoingMessage = MessageFactory.newInstance().createMessage();

@@ -49,17 +49,24 @@ public class QueryServlet extends HttpServlet {
             SOAPBody body = envelope.getBody();
             QName eName = new QName(ns, "RDF", "rdf");   //<nn:add xmlns="ns" />
             SOAPBodyElement bodyElement = body.addBodyElement(eName);
-
-            NodeList scoreList = readXML(id);
-            for (int i = 0; i < scoreList.getLength(); i++) {//遍历节点
-                Element element = (Element) scoreList.item(i);
-                String scoreType = element.getAttribute("成绩性质");
-                String course = element.getAttribute("课程编号");
-                String score = element.getElementsByTagName("得分").item(0).getFirstChild().getNodeValue();
-                SOAPElement scoreElement = bodyElement.addChildElement("课程成绩");
-                scoreElement.setValue(score);
-                scoreElement.addAttribute(envelope.createName("成绩性质"), scoreType);
-                scoreElement.addAttribute(envelope.createName("课程编号"), course);
+            if (id == null) {
+                body.addFault(envelope.createName("Client"), "传入参数错误");
+            } else {
+                NodeList scoreList = readXML(id);
+                if (scoreList == null) {
+                    body.addFault(envelope.createName("Server"), "服务器错误 或 学号不存在");
+                } else {
+                    for (int i = 0; i < scoreList.getLength(); i++) {//遍历节点
+                        Element element = (Element) scoreList.item(i);
+                        String scoreType = element.getAttribute("成绩性质");
+                        String course = element.getAttribute("课程编号");
+                        String score = element.getElementsByTagName("得分").item(0).getFirstChild().getNodeValue();
+                        SOAPElement scoreElement = bodyElement.addChildElement("课程成绩");
+                        scoreElement.setValue(score);
+                        scoreElement.addAttribute(envelope.createName("成绩性质"), scoreType);
+                        scoreElement.addAttribute(envelope.createName("课程编号"), course);
+                    }
+                }
             }
             outgoingMessage.saveChanges();
             System.out.println();

@@ -6,7 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b1e5f7b6-54f9-49c6-87cd-c17542172e6c" name="Default" comment="删除一些多余代码">
+    <list default="true" id="b1e5f7b6-54f9-49c6-87cd-c17542172e6c" name="Default" comment="添加了 fault">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/SOAP/src/main/java/edu/nju/scoreQuery/ModifyScore.java" afterPath="$PROJECT_DIR$/SOAP/src/main/java/edu/nju/scoreQuery/ModifyScore.java" />
       <change beforePath="$PROJECT_DIR$/SOAP/src/main/java/edu/nju/scoreQuery/servlets/ModifyServlet.java" afterPath="$PROJECT_DIR$/SOAP/src/main/java/edu/nju/scoreQuery/servlets/ModifyServlet.java" />
@@ -26,8 +26,8 @@
       <file leaf-file-name="ModifyScore.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SOAP/src/main/java/edu/nju/scoreQuery/ModifyScore.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="22" column="36" lean-forward="true" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+            <state relative-caret-position="284">
+              <caret line="21" column="19" lean-forward="false" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -38,8 +38,8 @@
       <file leaf-file-name="QueryServlet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SOAP/src/main/java/edu/nju/scoreQuery/servlets/QueryServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="253">
+              <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#893#894#0" expanded="true" />
@@ -53,9 +53,11 @@
       <file leaf-file-name="ModifyServlet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SOAP/src/main/java/edu/nju/scoreQuery/servlets/ModifyServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-              <folding />
+            <state relative-caret-position="176">
+              <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -540,7 +542,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ModifyScore">
+  <component name="RunManager" selected="Tomcat Server.Tomcat">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -1318,7 +1320,7 @@
       <workItem from="1513415644967" duration="9949000" />
       <workItem from="1514393782122" duration="399000" />
       <workItem from="1514443537817" duration="16458000" />
-      <workItem from="1514468727159" duration="18551000" />
+      <workItem from="1514468727159" duration="19093000" />
     </task>
     <task id="LOCAL-00001" summary="纠正部分 xsd">
       <created>1513265731661</created>
@@ -1404,7 +1406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1514490784015</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="删除一些多余代码">
+      <created>1514491063867</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1514491063867</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1419,7 +1428,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71260000" />
+    <option name="totallyTimeSpent" value="71802000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1557,7 +1566,8 @@
     <MESSAGE value="assign5 实现？使用的朱应山的代码，简化为QueryServlet" />
     <MESSAGE value="解决了乱码问题" />
     <MESSAGE value="作业6 基础实现" />
-    <option name="LAST_COMMIT_MESSAGE" value="作业6 基础实现" />
+    <MESSAGE value="删除一些多余代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="删除一些多余代码" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1940,8 +1950,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SOAP/src/main/java/edu/nju/scoreQuery/servlets/QueryServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="253">
+          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#893#894#0" expanded="true" />
@@ -1953,16 +1963,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SOAP/src/main/java/edu/nju/scoreQuery/servlets/ModifyServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-          <folding />
+        <state relative-caret-position="176">
+          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SOAP/src/main/java/edu/nju/scoreQuery/ModifyScore.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="22" column="36" lean-forward="true" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="36" />
+        <state relative-caret-position="284">
+          <caret line="21" column="19" lean-forward="false" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
