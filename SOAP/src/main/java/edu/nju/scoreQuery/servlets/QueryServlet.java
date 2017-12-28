@@ -41,6 +41,7 @@ public class QueryServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("charset=utf-8");
         response.setCharacterEncoding("utf-8");
         String id = request.getParameter("id");
         try {
