@@ -54,8 +54,7 @@ public class QueryServlet extends HttpServlet {
             QName eName = new QName(ns, "RDF", "rdf");   //<nn:add xmlns="ns" />
             SOAPBodyElement bodyElement = body.addBodyElement(eName);
 
-            String filePath = QueryServlet.class.getResource("StudentList.xml").getPath();
-            NodeList scoreList = readXML(id, filePath);
+            NodeList scoreList = readXML(id);
             for (int i = 0; i < scoreList.getLength(); i++) {//遍历节点
                 Element element = (Element) scoreList.item(i);
                 String scoreType = element.getAttribute("成绩性质");
@@ -66,12 +65,10 @@ public class QueryServlet extends HttpServlet {
                 scoreElement.addAttribute(envelope.createName("成绩性质"), scoreType);
                 scoreElement.addAttribute(envelope.createName("课程编号"), course);
             }
-            body.addFault(envelope.createName("Client"),"消息被不正确地构成，或包含了不正确的信息");
-            body.addFault(envelope.createName("Server"),"服务器有问题，因此无法处理进行下去");
             outgoingMessage.saveChanges();
             System.out.println();
             outgoingMessage.writeTo(System.out);
-            System.out.println("\n invoking......");
+            System.out.println();
             outgoingMessage.writeTo(response.getOutputStream());
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,25 +79,26 @@ public class QueryServlet extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+
     }
 
-    private static NodeList readXML(String number, String filePath) throws Exception {
+
+    private static NodeList readXML(String id) throws Exception {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
-        Document document = db.parse(new File(filePath));
+        Document document = db.parse(QueryServlet.class.getResource("StudentList.xml").getFile());
         NodeList list = document.getElementsByTagName("学生信息");
         NodeList scoreList = null;
         for (int i = 0; i < list.getLength(); ++i) {
             Element element = (Element) list.item(i);
             String content = element.getElementsByTagName("学号").item(0)
                     .getFirstChild().getNodeValue();
-            if (!content.equals(number)) {
+            if (!content.equals(id)) {
                 continue;
             }
             scoreList = element.getElementsByTagName("课程成绩");
-            System.out.print(scoreList.getLength());
         }
         return scoreList;
     }
+
 }
