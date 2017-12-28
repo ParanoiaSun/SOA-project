@@ -17,7 +17,7 @@ public class Client extends HttpServlet  implements ReqRespListener{
     private static final long serialVersionUID = 1L;  
   
     private SOAPConnection connection;  
-    private static MessageFactory messageFactory = null;  
+    private static MessageFactory messageFactory = null;
     @Override  
     public void init() throws ServletException {  
         super.init();  
@@ -31,7 +31,7 @@ public class Client extends HttpServlet  implements ReqRespListener{
         } catch (SOAPException e) {  
             e.printStackTrace();  
         }  
-    }  
+    }
     //使用传递学号给用户
     @Override  
     protected void doGet(HttpServletRequest request, HttpServletResponse response)  
