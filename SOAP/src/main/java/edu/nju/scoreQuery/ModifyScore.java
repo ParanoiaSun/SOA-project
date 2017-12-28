@@ -1,6 +1,5 @@
 package edu.nju.scoreQuery;
 
-import javax.xml.namespace.QName;
 import javax.xml.soap.*;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,6 +14,7 @@ public class ModifyScore {
     public static void main(String[] args) throws IOException, SOAPException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] params = new String[4];
+        // TODO uncomment before commit
 //        System.out.print("学生学号: ");
 //        params[0] = br.readLine();
 //        System.out.print("课程编号: ");
@@ -23,6 +23,7 @@ public class ModifyScore {
 //        params[2] = br.readLine();
 //        System.out.print("分数: ");
 //        params[3] = br.readLine();
+        // TODO delete before commit
         params[0] = "151250127";
         params[1] = "25000080";
         params[2] = "平时成绩";

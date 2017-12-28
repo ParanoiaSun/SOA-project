@@ -2,7 +2,6 @@ package edu.nju.scoreQuery.servlets;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.servlet.annotation.WebServlet;
@@ -73,7 +72,6 @@ public class ModifyServlet extends JAXMServlet implements ReqRespListener {
             }
             scoreList = element.getElementsByTagName("课程成绩");
         }
-        System.out.println(scoreList.getLength());
         if (scoreList != null) {
             for (int i = 0; i < scoreList.getLength(); i++) {
                 Element element = (Element) scoreList.item(i);
