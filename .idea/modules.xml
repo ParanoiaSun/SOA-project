@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/SOA_Project.iml" filepath="$PROJECT_DIR$/.idea/SOA_Project.iml" />
       <module fileurl="file://$PROJECT_DIR$/XMLHandler/XMLHandler.iml" filepath="$PROJECT_DIR$/XMLHandler/XMLHandler.iml" />
       <module fileurl="file://$PROJECT_DIR$/domGeneXML/domGeneXML.iml" filepath="$PROJECT_DIR$/domGeneXML/domGeneXML.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scoreQuery/scoreQuery.iml" filepath="$PROJECT_DIR$/scoreQuery/scoreQuery.iml" />
     </modules>
   </component>
 </project>
