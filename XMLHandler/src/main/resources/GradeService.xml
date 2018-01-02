@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<description
+        xmlns="http://www.w3.org/ns/wsdl"
+        targetNamespace= "http://jw.nju.edu.cn/wsdl/GradeSvc"
+        xmlns:tns= "http://jw.nju.edu.cn/wsdl/GradeSvc"
+        xmlns:ghns = "http://jw.nju.edu.cn/schema"
+        xmlns:wsoap= "http://www.w3.org/ns/wsdl/soap"
+        xmlns:soap="http://www.w3.org/2003/05/soap-envelope"
+        xmlns:wsdlx="http://www.w3.org/ns/wsdl-extensions">
+    <types>
+        <xs:import xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   namespace="http://jw.nju.edu.cn/schema"
+                   schemaLocation="./xsd/GradeManage.xsd"
+        />
+    </types>
+    <interface  name = "gradeManageInterface" >
+        <fault name = "找不到对应的学生"
+               element = "ghns:找不到对应的学生错误"/>
+        <fault name = "学号格式错误"
+               element = "ghns:学号格式错误"/>
+        <fault name="课程编号格式错误"
+               element="ghns:课程编号格式错误"/>
+        <fault name="找不到对应的课程"
+               element="ghns:找不到对应的课程错误"/>
+        <fault name="输入信息不完整"
+               element="输入信息不完整错误"/>
+        <fault name="成绩信息不存在"
+               element="成绩信息不存在错误"/>
+
+        <operation name="查询成绩"
+                   pattern="http://www.w3.org/ns/wsdl/in-out"
+                   style="http://www.w3.org/ns/wsdl/style/iri"
+                   wsdlx:safe = "true">
+            <input messageLabel="In" element="ghns:学号" />
+            <output messageLabel="Out" element="ghns:查询结果" />
+            <outfault ref="tns:找不到对应的学生" messageLabel="Out"/>
+            <infault ref="tns:学号格式错误" messageLabel="In"/>
+        </operation>
+
+        <operation name="删除成绩"
+                   pattern="http://www.w3.org/ns/wsdl/in-out"
+                   style="http://www.w3.org/ns/wsdl/style/iri"
+                   wsdlx:safe = "true">
+            <input messageLabel="In" element="ghns:删除成绩"/>
+            <output messageLabel="Out" element="ghns:删除结果"/>
+            <infault ref="tns:课程编号格式错误" messageLabel="In"/>
+            <infault ref="tns:学号格式错误" messageLabel="In"/>
+            <infault ref="tns:输入信息不完整" messageLabel="In"/>
+            <outfault ref="tns:找不到对应的课程" messageLabel="Out"/>
+            <outfault ref="tns:成绩信息不存在" messageLabel="Out"/>
+        </operation>
+
+        <operation name="修改成绩"
+                   pattern="http://www.w3.org/ns/wsdl/in-out"
+                   style="http://www.w3.org/ns/wsdl/style/iri"
+                   wsdlx:safe = "true">
+            <input messageLabel="In" element="ghns:修改成绩列表"/>
+            <output messageLabel="Out" element="ghns:修改结果" />
+            <infault ref="tns:学号格式错误" messageLabel="In"/>
+            <infault ref="tns:课程编号格式错误" messageLabel="In"/>
+            <infault ref="tns:输入信息不完整" messageLabel="In"/>
+            <outfault ref="tns:找不到对应的学生" messageLabel="Out"/>
+            <outfault ref="tns:成绩信息不存在" messageLabel="Out"/>
+            <outfault ref="tns:找不到对应的课程" messageLabel="Out"/>
+        </operation>
+
+        <operation name="添加成绩"
+                   pattern="http://www.w3.org/ns/wsdl/in-out"
+                   style="http://www.w3.org/ns/wsdl/style/iri"
+                   wsdlx:safe = "true">
+            <input messageLabel="In" element="ghns:添加成绩"/>
+            <output messageLabel="Out" element="ghns:添加结果"/>
+            <infault ref="tns:学号格式错误" messageLabel="In"/>
+            <infault ref="tns:课程编号格式错误" messageLabel="In"/>
+            <infault ref="tns:输入信息不完整" messageLabel="In"/>
+        </operation>
+
+
+    </interface>
+
+    <binding name="gradeManageBinding" interface="tns:gradeManageInterface"
+             type="http://www.w3.org/ns/wsdl/soap"
+             wsoap:protocol="http://www.w3.org/2003/05/soap/bindings/HTTP/">
+        <operation ref="tns:查询成绩"
+                   wsoap:mep="http://www.w3.org/2003/05/soap/mep/request-response" />
+        <operation ref="tns:删除成绩"
+                   wsoap:mep="http://www.w3.org/2003/05/soap/mep/request-response" />
+        <operation ref="tns:修改成绩"
+                   wsoap:mep="http://www.w3.org/2003/05/soap/mep/request-response" />
+        <operation ref="tns:添加成绩"
+                   wsoap:mep="http://www.w3.org/2003/05/soap/mep/request-response" />
+        <fault ref="tns:找不到对应的学生"
+               wsoap:code="soap:Sender" />
+        <fault ref="tns:学号格式错误"
+               wsoap:code="soap:Sender" />
+        <fault ref="tns:课程编号格式错误"
+               wsoap:code="soap:Sender" />
+        <fault ref="tns:找不到对应的课程"
+               wsoap:code="soap:Sender" />
+        <fault ref="tns:输入信息不完整"
+               wsoap:code="soap:Sender" />
+        <fault ref="tns:成绩信息不存在"
+               wsoap:code="soap:Sender" />
+
+    </binding>
+    <service name="gradeManage" interface="tns:gradeManageInterface">
+        <endpoint name="gradeManageEndpoint"
+        binding="tns:gradeManageBinding"
+        address="http://jw.nju.edu.cn/gradeManage"/>
+    </service>
+
+</description>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://jw.nju.edu.cn/schema"
+        xmlns:tns="http://jw.nju.edu.cn/schema" elementFormDefault="qualified">
+    <include schemaLocation="Student.xsd"/>
+    <include schemaLocation="ScoreList.xsd"/>
+
+    <element name="找不到对应的学生错误" type="string"/>
+    <element name="学号格式错误" type="string"/>
+    <element name="课程编号格式错误" type="string"/>
+    <element name="找不到对应的课程错误" type="string"/>
+    <element name="输入信息不完整错误" type="string"/>
+    <element name="成绩信息不存在错误" type="string"/>
+
+    <element name="学号" type="tns:学号类型"/>
+    <element name="查询结果" type="tns:课程成绩列表类型"/>
+
+    <element name="删除成绩" type="tns:删除成绩类型"/>
+    <complexType name="删除成绩类型">
+        <sequence  minOccurs="0" maxOccurs="unbounded">
+            <element name="删除课程成绩列表" type="tns:课程成绩列表类型"/>
+        </sequence>
+    </complexType>
+
+    <element name="删除结果" type="tns:返回结果"/>
+    <element name="修改结果" type="tns:返回结果"/>
+    <element name="添加结果" type="tns:返回结果"/>
+    <simpleType name="返回结果">
+        <restriction base="string">
+            <enumeration value="成功"/>
+            <enumeration value="失败"/>
+        </restriction>
+    </simpleType>
+
+    <element name="添加成绩" type="tns:添加成绩类型"/>
+    <complexType name="添加成绩类型">
+        <sequence  minOccurs="0" maxOccurs="unbounded">
+            <element name="添加课程成绩列表" type="tns:课程成绩列表类型"/>
+        </sequence>
+    </complexType>
+
+    <element name="修改成绩" type="tns:修改课程成绩类型"/>
+    <complexType name="修改课程成绩类型">
+        <sequence  minOccurs="0" maxOccurs="unbounded">
+            <element name="添加课程成绩列表" type="tns:课程成绩列表类型"/>
+        </sequence>
+    </complexType>
+
+
+
+</schema>
